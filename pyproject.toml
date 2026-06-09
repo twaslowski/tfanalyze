@@ -1,6 +1,6 @@
 [project]
 name = "tfanalyze"
-version = "0.4.0"
+version = "0.4.1"
 description = "Lightweight command-line utility to analyze Terraform plan files"
 
 authors = [{ name = "Tobias Waslowski", email = "contact@twaslowski.com" }]

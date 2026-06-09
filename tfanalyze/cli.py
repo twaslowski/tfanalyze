@@ -26,12 +26,6 @@ def tfanalyze(
 ) -> None:
     """
     Summarize Terraform plan changes.
-    :param plan: Path to plan file, generated `terraform plan -out=plan.tfplan`
-    :param show_no_op: Whether to include no-op changes in the summary.
-    :param destroy_only: Whether to show only destroy changes.
-    :param update_only: Whether to show only update changes.
-
-    Does not return anything; only prints to stdout.
     """
     parsed_plan = _load(plan, False)
     changes = _parse_changes(parsed_plan)

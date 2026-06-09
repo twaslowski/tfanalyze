@@ -14,3 +14,12 @@ tasks:
       - uv run coverage html
       - uv run coverage xml -o test/coverage.xml
       - uv run coverage-badge -f -o test/coverage.svg
+
+  publish:
+    desc: Create a release
+    dotenv:
+      - .env
+    cmds:
+      - rm -rf dist
+      - uv build
+      - uv publish
