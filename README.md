@@ -1,5 +1,6 @@
 ![Build](https://github.com/twaslowski/tfanalyze/actions/workflows/test.yml/badge.svg)
 ![Coverage](./test/coverage.svg)
+![GitHub Release](https://img.shields.io/github/v/release/twaslowski/tfanalyze)
 
 # tfanalyze
 

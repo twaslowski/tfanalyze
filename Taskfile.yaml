@@ -13,7 +13,7 @@ tasks:
       - uv run coverage run -m pytest
       - uv run coverage html
       - uv run coverage xml -o test/coverage.xml
-      - uv run coverage-badge -f -o test/coverage.svg
+      - uv run genbadge coverage -f -o test/coverage.svg
 
   publish:
     desc: Create a release

@@ -7,7 +7,7 @@ def test_load_command_with_nonexistent_file():
     runner = CliRunner()
     result = runner.invoke(tfanalyze, ["nonexistent.tfplan"])
     assert result.exit_code == 1
-    assert "Plan file nonexistent.tfplan does not exist." in result.output
+    assert "File nonexistent.tfplan could not be found." in result.output
 
 
 def test_load_command_with_invalid_file():
