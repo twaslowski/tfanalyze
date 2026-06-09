@@ -85,6 +85,10 @@ def _load(plan: str) -> dict:
             secho("Failed to parse Terraform plan JSON output.", fg="red")
             exit(1)
 
+    except FileNotFoundError:
+        secho("Terraform is not installed or not available in PATH.", fg="red")
+        exit(1)
+
     except subprocess.CalledProcessError as e:
         secho("Failed to load Terraform plan.", fg="red")
         secho(f"\n{e.stderr.decode()}", fg="red")
