@@ -12,16 +12,22 @@ them.
 
 ## Installation
 
-pip:
+uv (recommended):
 
-```bash
-pip install tfanalyze
+```shell
+uv tool install tfanalyze
 ```
 
 pipx:
 
-```shell
+```bash
 pipx install tfanalyze
+```
+
+pip (not recommended for a global install):
+
+```shell
+pip install tfanalyze
 ```
 
 ## Usage
