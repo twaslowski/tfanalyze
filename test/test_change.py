@@ -1,4 +1,4 @@
-from tfanalyse.change import Change, ChangeAction
+from tfanalyze.change import Change, ChangeAction
 
 
 def test_diff_two_properties():

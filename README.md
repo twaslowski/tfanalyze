@@ -1,9 +1,9 @@
-![Build](https://github.com/twaslowski/tfanalyse/actions/workflows/test.yml/badge.svg)
+![Build](https://github.com/twaslowski/tfanalyze/actions/workflows/test.yml/badge.svg)
 ![Coverage](./test/coverage.svg)
 
-# tfanalyse
+# tfanalyze
 
-tfanalyse is a lightweight command-line utility to summarise the contents of a Terraform plan.
+tfanalyze is a lightweight command-line utility to summarize the contents of a Terraform plan.
 It allows you to quickly see what resources are being created, updated, or destroyed, and what changes are being made to them.
 
 ## Installation
@@ -11,14 +11,14 @@ It allows you to quickly see what resources are being created, updated, or destr
 You can install this tool using pip:
 
 ```bash
-pip install tfanalyse
+pip install tfanalyze
 ```
 
 You can also install it from source:
 
 ```bash
-git clone git@github.com:twaslowski/tfanalyse.git
-pip install ./tfanalyse/   # global installation
+git clone git@github.com:twaslowski/tfanalyze.git
+pip install ./tfanalyze/   # global installation
 poetry install  # installs in your given poetry virtual environment
 ```
 
@@ -28,7 +28,7 @@ To use the tool, simply run it with the path to the Terraform plan file as an ar
 
 ```
 terraform plan -out=plan.tfplan
-tfanalyse plan.tfplan
+tfanalyze plan.tfplan
 ```
 
 This will output a summary of the plan, showing the resources that are being created, updated, or destroyed.

@@ -17,17 +17,6 @@ class Change:
     properties_before: dict
     properties_after: dict
 
-    @classmethod
-    def from_entry(cls, entry: dict) -> Change:
-        return Change(
-            address=entry["address"],
-            type=entry["type"],
-            name=entry["name"],
-            change_action=ChangeAction.from_entry(entry),
-            properties_before=entry["change"]["before"],
-            properties_after=entry["change"]["after"],
-        )
-
     def diff_properties(self) -> dict[str, tuple[str | None, str | None]]:
         """
         Return a dictionary of properties that have changed.
@@ -40,10 +29,21 @@ class Change:
         }
 
 
+def from_entry(entry: dict) -> Change:
+    return Change(
+        address=entry["address"],
+        type=entry["type"],
+        name=entry["name"],
+        change_action=ChangeAction.from_entry(entry),
+        properties_before=entry["change"]["before"],
+        properties_after=entry["change"]["after"],
+    )
+
+
 class ChangeAction(Enum):
     """
     Represents a Terraform plan change action.
-    Value is the colour to display the action in.
+    Value is the color to display the action in.
     """
 
     CREATE = "green"

@@ -1,0 +1,16 @@
+version: '3'
+tasks:
+  fmt:
+    desc: Run formatting
+    cmds:
+      - uv run black tfanalyze
+      - uv run isort tfanalyze
+      - uv run autoflake --in-place --remove-all-unused-imports --expand-star-import tfanalyze/*.py
+
+  test:
+    desc: Run tests
+    cmds:
+      - uv run coverage run -m pytest
+      - uv run coverage html
+      - uv run coverage xml -o test/coverage.xml
+      - uv run coverage-badge -f -o test/coverage.svg
