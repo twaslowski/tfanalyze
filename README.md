@@ -3,28 +3,30 @@
 
 # tfanalyze
 
+Do you ever look at a Terraform plan with 15 deletions and 43 updates and wonder how you're
+supposed to safely perform an apply? Fear not! `tfanalyze` has your back.
+
 tfanalyze is a lightweight command-line utility to summarize the contents of a Terraform plan.
-It allows you to quickly see what resources are being created, updated, or destroyed, and what changes are being made to them.
+It allows you to quickly see what resources are being created, updated, or destroyed, and what changes are being made to
+them.
 
 ## Installation
 
-You can install this tool using pip:
+pip:
 
 ```bash
 pip install tfanalyze
 ```
 
-You can also install it from source:
+pipx:
 
-```bash
-git clone git@github.com:twaslowski/tfanalyze.git
-pip install ./tfanalyze/   # global installation
-poetry install  # installs in your given poetry virtual environment
+```shell
+pipx install tfanalyze
 ```
 
 ## Usage
 
-To use the tool, simply run it with the path to the Terraform plan file as an argument:
+Supply `tfanalyze` with a single Terraform plan:
 
 ```
 terraform plan -out=plan.tfplan
@@ -36,7 +38,22 @@ You can list only the resources that would be destroyed by adding the `--destroy
 
 ## Development
 
-This is a very minimal tool for now. I will develop it to be useful for me, and I hope that others may find it useful
-too. If you would like to develop it further, feel free to fork the repository and submit a pull request.
+Lifecycle tasks can be performed using the provided [Taskfile](https://taskfile.dev).
+`black`, `isort` and `autoflake` are used to ensure consistent formatting.
 
-You can set up the local development environment using [Poetry](https://python-poetry.org/): Simply run `poetry install`.
+Tests exist and can be invoked with pytest. In order to generate a test coverage report, simply
+run `task test`.
+
+Additionally, check the `e2e/` directory to validate `tfanalyze` against real Terraform plans.
+You can generate plans for different scenarios by using the provided bash script:
+
+```shell
+# You'll want to create an initial baseline setup
+cd e2e
+terraform init
+
+./generate-plans.sh destroy
+./generate-plans.sh update
+```
+
+A minimal baseline state exists at `e2e/state/e2e.tfstate` which is re-used by all scenarios.
