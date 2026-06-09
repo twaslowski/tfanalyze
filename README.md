@@ -11,6 +11,20 @@ tfanalyze is a lightweight command-line utility to summarize the contents of a T
 It allows you to quickly see what resources are being created, updated, or destroyed, and what changes are being made to
 them.
 
+```shell
+$ terraform plan -out plan.tfplan
+$ tfanalyze plan.tfplan
+  DESTROY grafana_data_source.grafana_amazon_prometheus_datasource
+  DESTROY grafana_data_source.loki["team-a"]
+  DESTROY grafana_data_source.loki["team-b"]
+  DESTROY grafana_data_source.loki_admin
+  DESTROY grafana_data_source_permission.loki_admin_logs_read
+  DESTROY grafana_data_source_permission.loki_team_logs_read["team-a"]
+  DESTROY grafana_data_source_permission.loki_team_logs_read["team-b"]
+  UPDATE grafana_folder.infrastructure
+    title: infrastructure -> infra
+```
+
 ## Installation
 
 uv (recommended):
