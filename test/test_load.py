@@ -15,7 +15,9 @@ def test_load_command_with_nonexistent_file():
 
 @patch("tfanalyze.cli.subprocess.run")
 def test_load_command_with_invalid_file(mock_run):
-    mock_run.side_effect = subprocess.CalledProcessError(1, "terraform", stderr=b"invalid plan file")
+    mock_run.side_effect = subprocess.CalledProcessError(
+        1, "terraform", stderr=b"invalid plan file"
+    )
     runner = CliRunner()
     result = runner.invoke(tfanalyze, ["test/resources/invalid_plan.tfplan"])
     assert result.exit_code == 1

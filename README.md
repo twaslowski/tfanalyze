@@ -54,10 +54,51 @@ terraform plan -out=plan.tfplan
 tfanalyze plan.tfplan
 ```
 
-This will output a summary of the plan, showing the resources that are being created, updated, or destroyed.
-You can list only the resources that would be destroyed by adding the `--destroy-only` flag.
+This will output a summary of the plan, showing all resources that are being created, updated, destroyed, read,
+or left unchanged (no-op). To narrow down the output, exclude one or more change types with `--exclude`/`-e`
+(repeatable):
+
+```shell
+# Hide unchanged resources and anything being destroyed
+tfanalyze plan.tfplan --exclude noop --exclude destroy
+```
+
+Valid values are `create`, `update`, `destroy`, and `noop` (data source reads are reported as `noop`).
+
+If your plan was generated with [OpenTofu](https://opentofu.org/) rather than Terraform, pass the `--tofu` flag
+so `tfanalyze` uses the `tofu` binary to read the plan instead of `terraform`.
 
 ## Development
+
+Clone the repository and install dependencies with [uv](https://docs.astral.sh/uv/):
+
+```shell
+git clone https://github.com/twaslowski/tfanalyze.git
+cd tfanalyze
+uv sync
+```
+
+This installs `tfanalyze` in editable mode alongside its dev dependencies, so you can run it locally
+against your changes. Note that `uv run` only works from within the repo (or a subdirectory of it),
+since it needs to find the project's `pyproject.toml` to locate its virtual environment:
+
+```shell
+cd tfanalyze
+uv run tfanalyze plan.tfplan
+```
+
+If you want to use your editable build as your regular `tfanalyze` binary from any directory while
+developing, install it as a uv tool instead:
+
+```shell
+uv tool install --editable .
+```
+
+or, with pip:
+
+```shell
+pip install -e .
+```
 
 Lifecycle tasks can be performed using the provided [Taskfile](https://taskfile.dev).
 `black`, `isort` and `autoflake` are used to ensure consistent formatting.
